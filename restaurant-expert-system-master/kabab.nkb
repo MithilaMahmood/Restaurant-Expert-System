@@ -1,0 +1,22 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(chicken_kebab) :- chicken_kebab, !.
+hypothesize(beef_kebab) :- beef_kebab, !.
+hypothesize(lamb_kebab) :- lamb_kebab, !.
+hypothesize(vegetable_kebab) :- vegetable_kebab, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* menu food identification rules */
+chicken_kebab :- kebab, verify(has_chicken), verify(grilled).
+beef_kebab :- kebab, verify(has_beef), verify(grilled).
+lamb_kebab :- kebab, verify(has_lamb), verify(grilled).
+vegetable_kebab :- kebab, verify(has_vegetables), verify(grilled).
+
+/* classification rules */
+kebab :- verify(use_skewers), verify(contain_meat).
+

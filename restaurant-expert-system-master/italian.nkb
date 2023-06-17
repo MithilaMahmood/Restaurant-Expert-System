@@ -1,0 +1,29 @@
+% Module: menu.pl
+% --------
+%
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+
+hypothesize(pizza) :- pizza, !.
+hypothesize(pasta) :- pasta, !.
+hypothesize(lasagna) :- lasagna, !.
+hypothesize(risotto) :- risotto, !.
+hypothesize(tiramisu) :- tiramisu, !.
+hypothesize(gelato) :- gelato, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* menu food identification rules */
+pizza :- italian, verify(has_dough), verify(has_toppings).
+pasta :- italian, verify(has_pasta_type), verify(has_sauce).
+lasagna :- italian, verify(has_pasta_layers), verify(has_sauce), verify(baked).
+risotto :- italian, verify(has_rice), verify(creamy_consistency).
+tiramisu :- italian, verify(has_coffee), verify(layers).
+gelato :- italian, verify(frozen_dessert), verify(creamy_consistency).
+
+/* classification rules */
+
+italian :- verify(has_tomato_sauce), !.
+italian :- verify(has_cheese), verify(has_pasta_type), verify(has_olive_oil).
+

@@ -1,0 +1,22 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(cola) :- cola, !.
+hypothesize(lemon_lime) :- lemon_lime, !.
+hypothesize(orange_soda) :- orange_soda, !.
+hypothesize(root_beer) :- root_beer, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* menu food identification rules */
+cola :- soft_drink, verify(has_cola_flavor), verify(is_carbonated).
+lemon_lime :- soft_drink, verify(has_lemon_lime_flavor), verify(is_carbonated).
+orange_soda :- soft_drink, verify(has_orange_flavor), verify(is_carbonated).
+root_beer :- soft_drink, verify(has_root_beer_flavor), verify(is_carbonated).
+
+/* classification rules */
+soft_drink :- verify(is_fizzy).
+

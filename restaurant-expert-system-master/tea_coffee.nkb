@@ -1,0 +1,27 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(black_tea) :- black_tea, !.
+hypothesize(green_tea) :- green_tea, !.
+hypothesize(herbal_tea) :- herbal_tea, !.
+hypothesize(espresso) :- espresso, !.
+hypothesize(cappuccino) :- cappuccino, !.
+hypothesize(latte) :- latte, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* menu food identification rules */
+black_tea :- tea, verify(has_black_tea_leaves), verify(is_unsweetened).
+green_tea :- tea, verify(has_green_tea_leaves), verify(is_unsweetened).
+herbal_tea :- tea, verify(has_herbs), verify(is_unsweetened).
+espresso :- coffee, verify(has_espresso_shot), verify(is_strong).
+cappuccino :- coffee, verify(has_espresso_shot), verify(has_foamed_milk).
+latte :- coffee, verify(has_espresso_shot), verify(has_steamed_milk).
+
+/* classification rules */
+tea :- verify(has_tea_leaves).
+coffee :- verify(has_coffee_beans).
+

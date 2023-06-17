@@ -1,0 +1,23 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(kung_pao_chicken) :- kung_pao_chicken, !.
+hypothesize(sweet_and_sour_pork) :- sweet_and_sour_pork, !.
+hypothesize(mapo_tofu) :- mapo_tofu, !.
+hypothesize(chow_mein) :- chow_mein, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* menu food identification rules */
+kung_pao_chicken :- chinese, verify(has_chicken), verify(has_peanuts), verify(has_spicy_sauce).
+sweet_and_sour_pork :- chinese, verify(has_pork), verify(has_sweet_sour_sauce), verify(has_pineapple).
+mapo_tofu :- chinese, verify(has_tofu), verify(has_spicy_sauce), verify(has_sichuan_pepper).
+chow_mein :- chinese, verify(has_noodles), verify(has_stir_fried_vegetables), verify(has_sauce).
+
+/* classification rules */
+chinese :- verify(taste_spicy), !.
+chinese :- verify(use_rice).
+

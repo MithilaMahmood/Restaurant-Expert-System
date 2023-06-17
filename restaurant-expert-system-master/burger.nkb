@@ -1,0 +1,25 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(beef_burger) :- beef_burger, !.
+hypothesize(chicken_burger) :- chicken_burger, !.
+hypothesize(veggie_burger) :- veggie_burger, !.
+hypothesize(turkey_burger) :- turkey_burger, !.
+hypothesize(fish_burger) :- fish_burger, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* burger identification rules */
+beef_burger :- burger, verify(has_beef_patty).
+chicken_burger :- burger, verify(has_chicken_patty).
+veggie_burger :- burger, verify(has_veggie_patty).
+turkey_burger :- burger, verify(has_turkey_patty).
+fish_burger :- burger, verify(has_fish_patty).
+
+/* classification rules */
+burger :- verify(is_served_on_a_bun).
+
+

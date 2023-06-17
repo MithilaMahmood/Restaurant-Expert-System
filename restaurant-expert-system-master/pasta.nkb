@@ -1,0 +1,23 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(spaghetti) :- spaghetti, !.
+hypothesize(fettuccine) :- fettuccine, !.
+hypothesize(lasagna) :- lasagna, !.
+hypothesize(penne) :- penne, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* pasta identification rules */
+spaghetti :- pasta, verify(has_long_thin_shape), verify(is_made_from_durum_wheat).
+fettuccine :- pasta, verify(has_flat_thick_shape), verify(is_made_from_eggs_and_flour).
+lasagna :- pasta, verify(has_layered_shape), verify(is_made_from_egg_pasta_sheets_and_sauce).
+penne :- pasta, verify(has_tube_shape), verify(is_hollow).
+
+/* classification rules */
+pasta :- verify(is_served_with_sauce).
+
+

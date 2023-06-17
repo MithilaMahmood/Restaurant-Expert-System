@@ -1,0 +1,32 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(chicken_chap) :- chicken_chap, !.
+hypothesize(grilled_chicken) :- grilled_chicken, !.
+hypothesize(tandoori_chicken) :- tandoori_chicken, !.
+hypothesize(chicken_chili) :- chicken_chili, !.
+hypothesize(manchurian) :- manchurian, !.
+hypothesize(chicken_ball) :- chicken_ball, !.
+hypothesize(drumstick) :- drumstick, !.
+hypothesize(chicken_tikka_masala) :- chicken_tikka_masala, !.
+hypothesize(restaurant_special) :- restaurant_special, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* chicken item identification rules */
+chicken_chap :- chicken_item, verify(is_chap_cut), verify(is_cooked_with_spices).
+grilled_chicken :- chicken_item, verify(is_grilled), verify(is_cooked_with_marination).
+tandoori_chicken :- chicken_item, verify(is_tandoori), verify(is_cooked_with_tandoori_masala).
+chicken_chili :- chicken_item, verify(is_cooked_with_chili_sauce).
+manchurian :- chicken_item, verify(is_cooked_with_manchurian_sauce).
+chicken_ball :- chicken_item, verify(is_made_into_balls), verify(is_fried).
+drumstick :- chicken_item, verify(is_drumstick_cut), verify(is_fried).
+chicken_tikka_masala :- chicken_item, verify(is_cooked_in_tikka_masala_gravy).
+restaurant_special :- chicken_item, verify(is_restaurant_special).
+
+/* classification rules */
+chicken_item :- verify(is_chicken_based).
+

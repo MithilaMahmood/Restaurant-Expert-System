@@ -1,0 +1,22 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(margherita) :- margherita, !.
+hypothesize(pepperoni) :- pepperoni, !.
+hypothesize(hawaiian) :- hawaiian, !.
+hypothesize(supreme) :- supreme, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* menu food identification rules */
+margherita :- pizza, verify(has_tomato_sauce), verify(has_cheese), verify(has_basil).
+pepperoni :- pizza, verify(has_tomato_sauce), verify(has_cheese), verify(has_pepperoni).
+hawaiian :- pizza, verify(has_tomato_sauce), verify(has_cheese), verify(has_ham), verify(has_pineapple).
+supreme :- pizza, verify(has_tomato_sauce), verify(has_cheese), verify(has_pepperoni), verify(has_onions), verify(has_olives), verify(has_mushrooms), verify(has_bell_peppers).
+
+/* classification rules */
+pizza :- verify(has_dough), verify(has_toppings).
+

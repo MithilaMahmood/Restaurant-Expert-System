@@ -1,0 +1,22 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(steamed_momos) :- steamed_momos, !.
+hypothesize(fried_momos) :- fried_momos, !.
+hypothesize(tandoori_momos) :- tandoori_momos, !.
+hypothesize(pan_fried_momos) :- pan_fried_momos, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* menu food identification rules */
+steamed_momos :- momos, verify(cooked_by_steam).
+fried_momos :- momos, verify(deep_fried).
+tandoori_momos :- momos, verify(tandoor_grilled).
+pan_fried_momos :- momos, verify(pan_fried).
+
+/* classification rules */
+momos :- verify(has_dough), verify(has_fillings).
+

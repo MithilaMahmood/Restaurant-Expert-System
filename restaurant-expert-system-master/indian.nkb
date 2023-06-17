@@ -1,0 +1,37 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+
+hypothesize(biryani) :- biryani, !.
+hypothesize(butter_chicken) :- butter_chicken, !.
+hypothesize(tandoori_chicken) :- tandoori_chicken, !.
+hypothesize(palak_paneer) :- palak_paneer, !.
+hypothesize(dosa) :- dosa, !.
+hypothesize(vada_pav) :- vada_pav, !.
+hypothesize(masala_dosa) :- masala_dosa, !.
+hypothesize(chole_bhature) :- chole_bhature, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* menu food identification rules */
+biryani :- indian, rice,
+    verify(contain_meat),
+    verify(has_spices),
+    verify(heavy_portion).
+butter_chicken :- indian, verify(has_chicken), verify(has_gravy).
+tandoori_chicken :- indian, verify(has_chicken), verify(roasted).
+palak_paneer :- indian, verify(has_paneer), verify(has_spinach).
+dosa :- indian, verify(has_fermented_batter), verify(thin_crepe).
+vada_pav :- indian, verify(has_potato_patty), verify(served_with_bun).
+masala_dosa :- indian, verify(has_fermented_batter), verify(thin_crepe), verify(has_spicy_potato_filling).
+chole_bhature :- indian, verify(has_chickpeas), verify(fried_bread).
+
+/* classification rules */
+
+indian :- verify(use_spices), !.
+indian :- verify(has_curry), !.
+rice :- verify(contain_carbohydrate), !.
+rice :- verify(dry_texture), verify(need_to_be_cooked).

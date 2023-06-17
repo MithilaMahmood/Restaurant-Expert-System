@@ -1,0 +1,23 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(taco) :- taco, !.
+hypothesize(burrito) :- burrito, !.
+hypothesize(enchilada) :- enchilada, !.
+hypothesize(guacamole) :- guacamole, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* Mexican food identification rules */
+taco :- mexican_food, verify(is_taco).
+burrito :- mexican_food, verify(is_burrito).
+enchilada :- mexican_food, verify(is_enchilada).
+guacamole :- mexican_food, verify(is_guacamole).
+
+/* classification rules */
+mexican_food :- verify(is_mexican_food).
+
+

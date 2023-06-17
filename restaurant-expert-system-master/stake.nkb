@@ -1,0 +1,22 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(ribeye_steak) :- ribeye_steak, !.
+hypothesize(filet_mignon) :- filet_mignon, !.
+hypothesize(t_bone_steak) :- t_bone_steak, !.
+hypothesize(sirloin_steak) :- sirloin_steak, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* steak item identification rules */
+ribeye_steak :- steak_item, verify(is_cut_from_ribeye), verify(is_grilled).
+filet_mignon :- steak_item, verify(is_cut_as_filet_mignon), verify(is_grilled).
+t_bone_steak :- steak_item, verify(is_cut_as_t_bone), verify(is_grilled).
+sirloin_steak :- steak_item, verify(is_cut_from_sirloin), verify(is_grilled).
+
+/* classification rules */
+steak_item :- verify(is_steak_based).
+

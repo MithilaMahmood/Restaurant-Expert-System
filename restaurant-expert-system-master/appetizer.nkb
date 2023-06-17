@@ -1,0 +1,40 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(french_fries) :- french_fries, !.
+hypothesize(fries_with_cheese) :- fries_with_cheese, !.
+hypothesize(naga_wings) :- naga_wings, !.
+hypothesize(wings) :- wings, !.
+hypothesize(wedges) :- wedges, !.
+hypothesize(barbecue_nachos) :- barbecue_nachos, !.
+hypothesize(chicken_nachos) :- chicken_nachos, !.
+hypothesize(beef_nachos) :- beef_nachos, !.
+hypothesize(vegetable_nachos) :- vegetable_nachos, !.
+hypothesize(wanton) :- wanton, !.
+hypothesize(soup) :- soup, !.
+hypothesize(chicken_fries) :- chicken_fries, !.
+hypothesize(prawn_fries) :- prawn_fries, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* appetizer identification rules */
+french_fries :- appetizer, verify(is_served_with_fries).
+fries_with_cheese :- appetizer, verify(is_served_with_fries), verify(has_cheese_topping).
+naga_wings :- appetizer, verify(is_served_with_wings), verify(is_spicy).
+wings :- appetizer, verify(is_served_with_wings).
+wedges :- appetizer, verify(is_served_with_potato_wedges).
+barbecue_nachos :- appetizer, verify(is_served_with_nachos), verify(is_flavored_with_barbecue).
+chicken_nachos :- appetizer, verify(is_served_with_nachos), verify(is_flavored_with_chicken).
+beef_nachos :- appetizer, verify(is_served_with_nachos), verify(is_flavored_with_beef).
+vegetable_nachos :- appetizer, verify(is_served_with_nachos), verify(is_flavored_with_vegetables).
+wanton :- appetizer, verify(is_served_as_wanton).
+soup :- appetizer, verify(is_served_as_soup), verify(soup_variety).
+chicken_fries :- appetizer, verify(is_served_with_fries), verify(is_made_of_chicken).
+prawn_fries :- appetizer, verify(is_served_with_fries), verify(is_made_of_prawn).
+
+/* classification rules */
+appetizer :- verify(is_appetizer).
+

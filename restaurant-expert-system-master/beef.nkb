@@ -1,0 +1,24 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(beef_chilli) :- beef_chilli, !.
+hypothesize(achari_beef) :- achari_beef, !.
+hypothesize(beef_korma) :- beef_korma, !.
+hypothesize(beef_liver) :- beef_liver, !.
+hypothesize(beef_curry) :- beef_curry, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* beef item identification rules */
+beef_chilli :- beef_item, verify(is_cooked_with_chilli_sauce).
+achari_beef :- beef_item, verify(is_cooked_with_achari_masala).
+beef_korma :- beef_item, verify(is_served_as_korma).
+beef_liver :- beef_item, verify(is_made_of_beef_liver).
+beef_curry :- beef_item, verify(is_served_as_curry).
+
+/* classification rules */
+beef_item :- verify(is_beef_based).
+

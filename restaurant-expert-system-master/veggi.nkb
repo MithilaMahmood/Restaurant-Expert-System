@@ -1,0 +1,25 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(sauted_vegetables) :- sauted_vegetables, !.
+hypothesize(vegetable_curry) :- vegetable_curry, !.
+hypothesize(paneer_veggie) :- paneer_veggie, !.
+hypothesize(grilled_veggies) :- grilled_veggies, !.
+hypothesize(vegetable_tikka) :- vegetable_tikka, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* vegetable item identification rules */
+sauted_vegetables :- vegetable_item, verify(is_sauted).
+vegetable_curry :- vegetable_item, verify(is_served_as_curry).
+paneer_veggie :- vegetable_item, verify(has_paneer), verify(is_served_with_vegetables).
+grilled_veggies :- vegetable_item, verify(is_grilled).
+vegetable_tikka :- vegetable_item, verify(is_served_as_tikka).
+
+/* classification rules */
+vegetable_item :- verify(is_vegetable_based).
+
+

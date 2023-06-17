@@ -1,0 +1,22 @@
+% Module: menu.pl
+% --------
+
+% This module contains the rules that constitute the knowledge of
+% the expert system and the functionality to update the Knowledge Base
+
+/* hypotheses to be tested */
+hypothesize(chocolate_shake) :- chocolate_shake, !.
+hypothesize(vanilla_shake) :- vanilla_shake, !.
+hypothesize(strawberry_shake) :- strawberry_shake, !.
+hypothesize(mango_shake) :- mango_shake, !.
+hypothesize(not_in_my_memory). /* no diagnosis */
+
+/* menu food identification rules */
+chocolate_shake :- shake, verify(has_chocolate), verify(has_ice_cream).
+vanilla_shake :- shake, verify(has_vanilla_flavor), verify(has_ice_cream).
+strawberry_shake :- shake, verify(has_strawberry), verify(has_ice_cream).
+mango_shake :- shake, verify(has_mango), verify(has_ice_cream).
+
+/* classification rules */
+shake :- verify(has_milk), verify(is_blended).
+
